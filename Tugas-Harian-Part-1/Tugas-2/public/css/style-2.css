@@ -1,0 +1,30 @@
+* {
+    margin: 5px;
+}
+h1 {
+    text-align: center;
+    margin: 20px auto;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+[for="laki-laki"], [for="perempuan"] {
+    font-weight: normal;
+}
+
+#perempuan {
+    margin-left: 168px;
+}
+
+textarea {
+    margin-top: 10px;
+}
+
+#submit {
+    margin: 30px 0;
+}
