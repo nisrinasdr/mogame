@@ -47,6 +47,9 @@ console.log(kalimat.split(" "));
 
 // Soal 5
 var daftarBuah = ["2. Apel", "5. Jeruk", "3. Anggur", "4. Semangka", "1. Mangga"];
-console.log((daftarBuah.sort()).join('\n'));
+buahUrut = daftarBuah.sort();
+for(l=0; l<buahUrut.length; l++){
+    console.log(buahUrut[l])
+}
 
 
