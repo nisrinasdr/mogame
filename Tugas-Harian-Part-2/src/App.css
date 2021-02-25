@@ -1,0 +1,34 @@
+.App {
+  font-family: 'Times New Roman', Times, serif;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 0;
+}
+
+.form {
+  border: thin solid black;
+  border-radius: 2%;
+  text-align: center;
+  padding: 20px;
+  width: 450px;
+}
+
+.table {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+
+table tr{
+  vertical-align: bottom;
+}
+
+tr td {
+  padding: 10px 20px 10px 10px;
+}
+
+
+[type="submit"] {
+  border-radius: 20px;
+}
