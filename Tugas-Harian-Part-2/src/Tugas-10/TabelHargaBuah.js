@@ -19,7 +19,7 @@ class TabelHargaBuah extends React.Component {
                 <td style={{width:"150px", padding:"0px"}}>Harga</td>
                 <td style={{width:"150px", padding:"0px"}}>Berat</td>
             </tr>
-            {dataHargaBuah.map(el =>{
+            {dataHargaBuah.map((el,index) =>{
                 return (
                     <>
                         <tr style={{backgroundColor:"#FF7F50"}}>
