@@ -2,7 +2,7 @@
 import './Tugas-9/FormBuah'
 // import FormBuah from './Tugas-9/FormBuah';
 // import Timer from './Tugas-11/Timer'
-import DaftarHargaBuah from './Tugas-12/DaftarHargaBuah';
+import DaftarHargaBuah from './Tugas-13/DaftarHargaBuah';
 
 function App() {
   return (

@@ -92,6 +92,8 @@ class DaftarHargaBuah extends React.Component{
         formIndex: index
       })
     }
+
+    
   
     render(){
       return(

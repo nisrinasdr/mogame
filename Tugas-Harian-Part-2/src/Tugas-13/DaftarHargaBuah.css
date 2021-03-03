@@ -1,0 +1,50 @@
+h1 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.thDaftar, .tdDaftar {
+    border-bottom: thin solid lightgray;
+}
+
+.thDaftar {
+    padding: 10px 20px 10px 10px;
+}
+
+table {
+    border-spacing: 0;
+}
+
+button {
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+label {
+    display: inline-block;
+    width: 350px;
+    font-weight: bold;
+}
+
+input {
+    width: 200px;
+}
+
+form {
+    margin: auto;
+    width: 600px;
+    border: thin solid lightgray;
+    padding: 50px;
+    position: relative;
+}
+
+#submit {
+   margin-right: 50px;
+   position: absolute;
+   right: 0;
+}
+
+.tdSubmit {
+    width: 200px;
+    background-color: lightgreen;
+}
