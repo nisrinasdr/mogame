@@ -2,7 +2,8 @@
 import './Tugas-9/FormBuah'
 // import FormBuah from './Tugas-9/FormBuah';
 // import Timer from './Tugas-11/Timer'
-import DaftarHargaBuah from './Tugas-13/DaftarHargaBuah';
+// import DaftarHargaBuah from './Tugas-13/DaftarHargaBuah';
+import DaftarBuah from './Tugas-14/DaftarBuah';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       {/* <FormBuah />
       <TabelHargaBuah />
       <Timer /> */}
-      <DaftarHargaBuah />
+      {/* <DaftarHargaBuah /> */}
+      <DaftarBuah />
     </div>
   );
 }
