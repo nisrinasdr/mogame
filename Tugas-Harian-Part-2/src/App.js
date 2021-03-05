@@ -1,18 +1,12 @@
-// import TabelHargaBuah from './Tugas-10/TabelHargaBuah';
-import './Tugas-9/FormBuah'
-// import FormBuah from './Tugas-9/FormBuah';
-// import Timer from './Tugas-11/Timer'
-// import DaftarHargaBuah from './Tugas-13/DaftarHargaBuah';
-import DaftarBuah from './Tugas-14/DaftarBuah';
+import { GantiTemaProvider } from './Tugas-15/GantiTemaContext';
+import Routes from './Tugas-15/Routes';
 
 function App() {
   return (
     <div>
-      {/* <FormBuah />
-      <TabelHargaBuah />
-      <Timer /> */}
-      {/* <DaftarHargaBuah /> */}
-      <DaftarBuah />
+      <GantiTemaProvider>
+        <Routes />
+      </GantiTemaProvider>
     </div>
   );
 }

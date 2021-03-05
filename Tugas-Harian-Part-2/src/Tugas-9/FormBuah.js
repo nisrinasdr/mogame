@@ -11,7 +11,7 @@ class FormBuah extends React.Component {
                     <table>
                     <tr>
                     <td>
-                        <label for="nama"><strong>Nama Pelanggan</strong></label>
+                        <label style={{width:"200px"}} htmlFor="nama"><strong>Nama Pelanggan</strong></label>
                     </td>
                     <td>
                         <input type="text" id="nama" name="nama"></input>
@@ -19,19 +19,19 @@ class FormBuah extends React.Component {
                     </tr>
                     <tr>
                     <td>
-                        <span><strong>Daftar Item</strong></span>
+                        <span style={{width:"200px"}}><strong>Daftar Item</strong></span>
                     </td>
                     <td>
-                        <input type="checkbox" id="semangka" value="semangka" name="item"></input>
-                        <label for="semangka">Semangka</label> <br></br>
-                        <input type="checkbox" id="jeruk" value="jeruk" name="item"></input>
-                        <label for="jeruk">Jeruk</label> <br></br>
-                        <input type="checkbox" id="nanas" value="nanas" name="item"></input>
-                        <label for="nanas">Nanas</label> <br></br>
-                        <input type="checkbox" id="salak" value="salak" name="item"></input>
-                        <label for="salak">Salak</label> <br></br>
-                        <input type="checkbox" id="anggur" value="anggur" name="item"></input>
-                        <label for="anggur">Anggur</label>
+                        <input style={{width:"auto"}} type="checkbox" id="semangka" value="semangka" name="item"></input>
+                        <label style={{width:"auto"}} htmlFor="semangka">Semangka</label> <br></br>
+                        <input style={{width:"auto"}} type="checkbox" id="jeruk" value="jeruk" name="item"></input>
+                        <label style={{width:"auto"}} htmlFor="jeruk">Jeruk</label> <br></br>
+                        <input style={{width:"auto"}} type="checkbox" id="nanas" value="nanas" name="item"></input>
+                        <label style={{width:"auto"}} htmlFor="nanas">Nanas</label> <br></br>
+                        <input style={{width:"auto"}} type="checkbox" id="salak" value="salak" name="item"></input>
+                        <label style={{width:"auto"}} htmlFor="salak">Salak</label> <br></br>
+                        <input style={{width:"auto"}} type="checkbox" id="anggur" value="anggur" name="item"></input>
+                        <label style={{width:"auto"}} htmlFor="anggur">Anggur</label>
                     </td>
                     </tr>
                     <tr>
