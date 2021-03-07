@@ -1,0 +1,111 @@
+* {
+  margin: 0;
+  font-family: 'Slabo 27px', serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+nav ul li {
+  list-style: none;
+  display: inline;
+  margin: 0 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  align-items: center;
+  padding: 0 20px;
+}
+
+body {
+  background-image: url('/src/img/pattern.jpg');
+}
+
+section {
+  background-color: white;
+  margin: 30px 200px;
+  padding: 15px 25px;
+}
+
+h1 {
+  text-align: center;
+  padding: 50px 0 20px 0;
+  font-size: 2em;
+}
+
+h2 {
+  margin: 15px 0;
+}
+
+/* Search */
+.search {
+  display: flex;
+  justify-content: center;
+  padding-top: 2em;
+}
+
+/* Book Info */
+.book-info {
+  display: flex;
+  align-items: flex-start;
+  padding: 1em 0;
+}
+
+.book-img {
+  width: 550px;
+  height: 350px;
+  object-fit: cover;
+ 
+}
+
+.book-text {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0 1em;
+}
+
+.book-text p {
+  padding-bottom: 5px;
+}
+
+p {
+  padding-bottom: 20px;
+}
+
+/* Form */
+input {
+  width: 300px;
+}
+form {
+  margin-bottom: 2em;
+}
+textarea {
+  width: 300px;
+  height: 50px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 40px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
