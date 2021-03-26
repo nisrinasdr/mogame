@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Layout } from 'antd';
+import { Layout, Card, Rate, Input, Space } from 'antd'
+import { Link } from "react-router-dom";
 import './List.css'
 
 const { Content } = Layout;
+const { Meta } = Card;
+const { Search } = Input;
+
 
 
 const MovieList = () => {
@@ -16,6 +20,7 @@ const MovieList = () => {
                 let data = res.data;
                 setDaftarFilm(
                     data.map(el => { return {
+                        id: el.id,
                         description: el.description,
                         duration: el.duration,
                         genre: el.genre,
@@ -29,43 +34,66 @@ const MovieList = () => {
         }
     }, [daftarFilm])
     
-    
+    const onSearch = value => { 
+        axios.get(`https://backendexample.sanbersy.com/api/data-movie`)
+        .then(res => {
+        let data = res.data;
+        setDaftarFilm(
+            data.filter(el => {
+            return el.title.toLowerCase().includes(value.toLowerCase())
+            })
+        )
+        })
+    }
        
   
 
 return(
-  <>
   <Layout className="site-layout-background" >
       <Content style={{ padding: '0 24px', minHeight: 280 }}>
       <h1 style={{textAlign: 'center', margin: '1rem'}}>Movies</h1>
+
+      <Space direction="vertical" align="center" style={{marginBottom:'1.7em', width: '100%'}}>
+        <Search placeholder="Search movies" onSearch={onSearch} allowClear enterButton style={{ width: '25vw' }}/>
+      </Space>
       
-  {
+    {
       daftarFilm !== null && (
-          <>
-          <div className="container">
-          {
-                daftarFilm.map((el, idx) => { return (
-                    <div className='card'>
-                        <img src={el.image_url} alt={el.title} />
-                        <div className='card-text'>
-                        <h2>{el.title}</h2>
-                        <p style={{maxWidth:"100ch", overflow: "hidden", textOverflow: "ellipsis",whiteSpace: 'nowrap' }}>{el.description}</p>
-                        </div>
-                        <p className="rating">{el.rating}&#9733;</p>
-                    </div>
-                )
-                })
-            }
-          </div>
-          
-          </>
-      )
-  }
+        <div className="container" > 
+        {
+            daftarFilm.map((el, idx) => { return (
+                <Link to={`/movie-detail/${el.id}`} >
+                <Card
+                    hoverable
+                    style={{ width: '100%', borderRadius:'1em' }}
+                    cover={
+                        <img
+                            alt={el.title}
+                            src={el.image_url}
+                            style={{borderTopLeftRadius:'1em', borderTopRightRadius:'1em'}}
+                        />
+                    }
+                >
+                
+                
+                <Rate disabled value={el.rating/2} style={{fontSize: "1em", marginBottom:'1em'}}/>
+                
+                <Meta
+                    title={el.title} 
+                    description={el.description}
+                    style={{maxWidth:"100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: 'nowrap' }}
+                />
+                
+            </Card>
+            </Link>)
+            })
+        }
+        </div>)
+    }
+   
   </Content>   
-  
  </Layout>
-  </>
-)
+ )
 }
         
 

@@ -4,8 +4,8 @@ const { Footer } = Layout;
 
 const FooterLayout = () => {
 return(
-    <Layout style={{}}>
-      <Footer style={{ textAlign: 'center', backgroundColor: 'white' }}>Ant Design ©2018 Created by Ant UED</Footer>
+    <Layout>
+      <Footer theme="dark" style={{ textAlign: 'center', backgroundColor: 'white' }}>Nisrina Sudrajat ©2021 Created for SanberCode ReactJS Bootcamp | Last Update 03/21</Footer>
     </Layout>
   );
 }

@@ -1,13 +1,25 @@
 import React, { useContext, useState } from "react"
 import {UserContext} from "./UserContext"
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios"
 
+import { Form, Input, Button, notification } from 'antd';
+
+const layout = {
+  labelCol: { span: 9 },
+  wrapperCol: { span: 5 },
+};
+const tailLayout = {
+  wrapperCol: { offset: 9, span: 5 },
+};
+
+
 const Register = () =>{
+  const history = useHistory()
   const [, setUser] = useContext(UserContext)
   const [input, setInput] = useState({name: "", email: "" , password: ""})
 
-  const handleSubmit = (event) =>{
-    event.preventDefault()
+  const handleSubmit = () =>{
     axios.post("https://backendexample.sanbersy.com/api/register", {
       name: input.name, 
       email: input.email, 
@@ -19,47 +31,77 @@ const Register = () =>{
         var currentUser = {name: user.name, email: user.email, token }
         setUser(currentUser)
         localStorage.setItem("user", JSON.stringify(currentUser))
+        history.push('/')
+        notificationSuccess('success')
       }
     ).catch((err)=>{
-      alert(err)
+      notificationFailed('error')
     })
   }
 
   const handleChange = (event) =>{
-    let value = event.target.value
-    let name = event.target.name
-    switch (name){
-      case "name":{
-        setInput({...input, name: value})
-        break;
-      }
-      case "email":{
-        setInput({...input, email: value})
-        break;
-      }
-      case "password":{
-        setInput({...input, password: value})
-        break;
-      }
-      default:{break;}
-    }
+    setInput(
+      {...input,[event.target.name]:event.target.value}
+    )
   }
+
+  const notificationFailed = type => {
+    notification[type]({
+      message: 'E-mail or username already taken!',
+      duration: 4,
+    });
+  };
+
+  const notificationSuccess = type => {
+    notification[type]({
+      message: 'Create account success!',
+      duration: 4,
+    });
+  };
 
   return(
     <>
-      <div style={{margin: "0 auto", width: "25%", padding: "50px"}}>
-        <form onSubmit={handleSubmit}>
-          <label>name: </label>
-          <input type="text" name="name" onChange={handleChange} value={input.name}/>
-          <br/>
-          <label>email: </label>
-          <input type="email" name="email" onChange={handleChange} value={input.email}/>
-          <br/>
-          <label>Password: </label>
-          <input type="password" name="password" onChange={handleChange} value={input.password}/>
-          <br/>
-          <button>Register</button>
-        </form>
+      <div style={{margin: "0 auto", width: "100%", padding: "50px"}}>
+      <Form
+      {...layout}
+      name="basic"
+      onFinish={handleSubmit}
+      >
+
+      <Form.Item
+        label="Name"
+        name="name"
+        rules={[{ required: true, message: 'Please input your name!' }]}
+      >
+        <Input name="name" onChange={handleChange} value={input.name}/>
+      </Form.Item>
+
+      <Form.Item
+        label="E-mail"
+        name="email"
+        rules={[{ required: true, message: 'Please input your e-mail!' }]}
+      >
+        <Input name="email" onChange={handleChange} value={input.email}/>
+      </Form.Item>
+
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please input your password!' },
+        { min: 6, message: 'Password must be minimum 6 characters.' }]}
+        hasFeedback
+      >
+        <Input.Password name="password" onChange={handleChange} value={input.password}/>
+      </Form.Item>
+
+      <Form.Item {...tailLayout}>
+        <Button type="primary" htmlType="submit">
+          Register
+        </Button><br /><br />
+        <span>Already have an account? <Link to="/login"> Login here</Link>.</span>
+      </Form.Item>
+
+    </Form>
       </div>
     </>
   )

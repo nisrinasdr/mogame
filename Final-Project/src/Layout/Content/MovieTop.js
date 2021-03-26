@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-
+import { Card, Rate } from 'antd';
+import { Link } from "react-router-dom";
 import './List.css'
 
-
+const { Meta } = Card;
 
 const MovieTop = (props) => {
     const [daftarFilm, setDaftarFilm] = useState(null)
@@ -15,6 +16,7 @@ const MovieTop = (props) => {
                 let data = res.data;
                 setDaftarFilm(
                     data.map(el => { return {
+                        id: el.id,
                         description: el.description,
                         duration: el.duration,
                         genre: el.genre,
@@ -31,22 +33,38 @@ const MovieTop = (props) => {
     const topMoviesDisplay = () => {
         const sortByRating = daftarFilm.sort((a, b) => b.rating - a.rating)
         let topMovies = []
-        for(let i=0; i<4; i++) {
+        for(let i=0; i<5; i++) {
             topMovies.push(sortByRating[i])
         }
         return(
             <>
             {
-                topMovies.map((el, idx) => { return (
-                    <div className='card'>
-                        <img src={el.image_url} alt={el.title} />
-                        <h1 style={{fontSize:"1.1em"}}>{el.title}</h1>
-                        <p style={{maxWidth:"100%", overflow: "hidden", textOverflow: "ellipsis",whiteSpace: 'nowrap' }}>{el.description}</p>
-                        <p className="rating">{el.rating}</p>
-                    </div>
-                )
-                })
-            }
+            topMovies.map((el, idx) => { return (
+                <Link to={`/movie-detail/${el.id}`} >
+                <Card
+                    hoverable
+                    style={{ borderRadius:'1em' }}
+                    cover={
+                        <img
+                            alt={el.title}
+                            src={el.image_url}
+                            style={{borderTopLeftRadius:'1em', borderTopRightRadius:'1em'}}
+                        />
+                    }
+                >
+                
+                <Rate disabled value={el.rating/2} style={{fontSize: "1em", marginBottom:'1em'}}/>
+                
+                <Meta
+                    title={el.title} 
+                    description={el.description}
+                    style={{width:"100%", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: 'nowrap' }}
+                />
+                
+            </Card>
+            </Link>)
+            })
+        }
             </>
         )
     }
@@ -56,11 +74,11 @@ const MovieTop = (props) => {
 
 return(
   <>
-  <h1>Top Movies</h1>
+  <h1 style={{textAlign: 'center', margin: '1rem'}}>Top Movies</h1>
   {
       daftarFilm !== null && (
           <>
-          <div className="container">
+          <div className="container-front-page">
           {topMoviesDisplay()}
           </div>
           </>

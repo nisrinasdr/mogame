@@ -9,12 +9,12 @@ import Highlighter from 'react-highlight-words';
 import { EditOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons'
 
 import { UserContext } from '../User/UserContext';
-import { MovieContext } from './MovieContext';
+import { GameContext } from './GameContext';
 
 const { Content } = Layout;
 
-const MovieListEdit = () => {
-    const [daftarFilm, setDaftarFilm, , , , ] = useContext(MovieContext)
+const GameListEdit = () => {
+    const [daftarFilm, setDaftarFilm, , ] = useContext(GameContext)
     const [user,] = useContext(UserContext)
     const config = {
       headers: { Authorization: `Bearer ${user.token}` }
@@ -94,104 +94,69 @@ const MovieListEdit = () => {
 
     const columns = [
       {
-        title: 'Title',
-        dataIndex: 'title',
-        ...getColumnSearchProps('title'),
-        sorter: (a, b) => b.title.localeCompare(a.title),
+        title: 'Name',
+        dataIndex: 'name',
+        ...getColumnSearchProps('name'),
+        sorter: (a, b) => b.name.localeCompare(a.name),
         sortDirections: ['ascend', 'descend'],
       },
       {
-        title: 'Description',
-        dataIndex: 'description',
-        key: 'description',
-        width: '300px',
-        ellipsis: true,
-        sorter: (a, b) => b.description.localeCompare(a.description),
+        title: 'Release Year',
+        dataIndex: 'release',
+        key: 'release',
+        width: '150px',
+        sorter: (a, b) => b.release.localeCompare(a.release),
         sortDirections: ['ascend', 'descend'],
       },
       {
-        title: 'Duration',
-        dataIndex: 'duration',
-        width: '100px',
-        ellipsis: true,
-        sorter: (a, b) => b.duration > a.duration,
+        title: 'Platform',
+        dataIndex: 'platform',
+        sorter: (a, b) => b.platform > a.platform,
         sortDirections: ['ascend', 'descend'],
       },
       {
         title: 'Genre',
         dataIndex: 'genre',
-        filters: [
-          {
-            text: 'Animation',
-            value: 'Animation',
-          },
-          {
-            text: 'Action',
-            value: 'Action',
-          },
-          {
-            text: 'Adventure',
-            value: 'Adventure',
-          },
-          {
-            text: 'Comedy',
-            value: 'Comedy',
-          },
-          {
-            text: 'Drama',
-            value: 'Drama',
-          },
-          {
-            text: 'Fantasy',
-            value: 'Fantasy',
-          },
-          {
-            text: 'Horror',
-            value: 'Horror',
-          },
-          {
-            text: 'Romance',
-            value: 'Romance',
-          },
-          {
-            text: 'Sci-fi',
-            value: 'Sci-fi',
-          },
-          {
-            text: 'Thriller',
-            value: 'Thriller',
-          },
-          {
-            text: 'War',
-            value: 'War',
-          },
-        ],
-        onFilter: (value, record) => record.genre.indexOf(value) === 0,
         sorter: (a, b) => b.genre.localeCompare(a.genre),
         sortDirections: ['ascend', 'descend'],
       },
       {
-        title: 'Review',
-        dataIndex: 'review',
-        width: '30ch',
-        ellipsis: true,
-        sorter: (a, b) => b.review.localeCompare(a.review),
+        title: 'Single Player',
+        dataIndex: 'singlePlayer',
+        width: '150px',
+        filters: [
+          {
+            text: 'true',
+            value: 'true',
+          },
+          {
+            text: 'false',
+            value: 'false',
+          },
+        ],
+        onFilter: (value, record) => record.genre.indexOf(value) === 0,
+        sorter: (a, b) => b.singlePlayer.localeCompare(a.singlePlayer),
         sortDirections: ['ascend', 'descend'],
       },
       {
-        title: 'Rating',
-        dataIndex: 'rating',
-        width: '100px',
-        sorter: (a, b) => b.rating > a.rating,
+        title: 'Multi Player',
+        dataIndex: 'multiplayer',
+        width: '150px',
+        filters: [
+          {
+            text: 'true',
+            value: 'true',
+          },
+          {
+            text: 'false',
+            value: 'false',
+          },
+        ],
+        onFilter: (value, record) => record.genre.indexOf(value) === 0,
+        sorter: (a, b) => b.multiplayer > a.multiplayer,
         sortDirections: ['ascend', 'descend'],
       },
-      {
-        title: 'Year',
-        dataIndex: 'year',
-        width: '100px',
-        sorter: (a, b) => b.year > a.year,
-        sortDirections: ['ascend', 'descend'],
-      },
+      
       {
         title: 'Image URL',
         dataIndex: 'image_url',
@@ -200,10 +165,11 @@ const MovieListEdit = () => {
       {
         title: 'Action',
         dataIndex: 'id',
+        width: '150px',
         
         render: (text, record) => (
           <>
-          <Link to={`/movie-edit/${record.id}`} >
+          <Link to={`/game-edit/${record.id}`} >
           <button style={{marginRight:'1em'}} >
             <EditOutlined style={{color: 'black'}}/>
           </button>
@@ -211,10 +177,10 @@ const MovieListEdit = () => {
 
           <Popconfirm 
             placement="topLeft" 
-            title={"Are you sure to delete this movie?"} 
+            title={"Are you sure to delete this game?"} 
             onConfirm={
               () => {
-                axios.delete(`https://backendexample.sanbersy.com/api/data-movie/${record.id}`, config)
+                axios.delete(`https://backendexample.sanbersy.com/api/data-game/${record.id}`, config)
                   .then(() => {
                     let daftarFilmBaru = daftarFilm.filter(el => {return el.id !== record.id})
                     setDaftarFilm([...daftarFilmBaru])
@@ -243,7 +209,7 @@ return(
   <>
     <Layout className="site-layout-background" >
       <Content style={{ padding: '0 24px', minHeight: 280 }}>
-        <h1 style={{textAlign: 'center', margin: '1rem'}}>Movie List</h1>
+        <h1 style={{textAlign: 'center', margin: '1rem'}}>Game List</h1>
         <Table columns={columns} dataSource={daftarFilm} onChange={onChange} scroll={{ x: 1500 }} />
       </Content>   
     </Layout>
@@ -251,4 +217,4 @@ return(
 }
         
 
-export default MovieListEdit
+export default GameListEdit
